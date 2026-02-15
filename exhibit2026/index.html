@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>CEIS Gaming Exhibit 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+
+        /* Animated background grid */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(0deg, transparent 24%, rgba(0, 255, 65, 0.05) 25%, rgba(0, 255, 65, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 65, 0.05) 75%, rgba(0, 255, 65, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(0, 255, 65, 0.05) 25%, rgba(0, 255, 65, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 255, 65, 0.05) 75%, rgba(0, 255, 65, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        /* Glowing particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: #00ff41;
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-content {
+            position: relative;
+            width: 100%;
+        }
+
+        .rotating-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .rotating-text.active {
+            opacity: 1;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00ff41, #00ff9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+            letter-spacing: 8px;
+        }
+
+        .welcome-text {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00ff41, #00ff9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 4px;
+            line-height: 1.4;
+        }
+
+        .games-list {
+            font-size: 1.5rem;
+            color: #00ff41;
+            letter-spacing: 2px;
+            line-height: 1.8;
+        }
+
+        .games-list .intro {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00ff41, #00ff9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .games-list .game-name {
+            display: inline-block;
+            margin: 5px 15px;
+            color: #fff;
+            text-shadow: 0 0 10px #00ff41;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px #00ff41); }
+            to { filter: drop-shadow(0 0 30px #00ff41); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #00ff41;
+            margin-top: 20px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            color: #aaa;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        /* Glitch effect on hover */
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch:hover::before,
+        .glitch:hover::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch:hover::before {
+            animation: glitch-1 0.3s infinite;
+            color: #0ff;
+            z-index: -1;
+        }
+
+        .glitch:hover::after {
+            animation: glitch-2 0.3s infinite;
+            color: #f0f;
+            z-index: -2;
+        }
+
+        @keyframes glitch-1 {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(-3px); }
+            40% { transform: translateX(3px); }
+            60% { transform: translateX(-3px); }
+            80% { transform: translateX(3px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes glitch-2 {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(3px); }
+            40% { transform: translateX(-3px); }
+            60% { transform: translateX(3px); }
+            80% { transform: translateX(-3px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        /* Websites Section */
+        .websites-section {
+            margin-top: 80px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #00ff41, #00ff9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #aaa;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        .websites-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .website-card {
+            background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+            border: 2px solid #00ff41;
+            border-radius: 15px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .website-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .website-card:hover::before {
+            animation: shine 1.5s infinite;
+        }
+
+        .website-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #00ff9d;
+            box-shadow: 0 10px 40px rgba(0, 255, 65, 0.4);
+        }
+
+        .website-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #001a0d, #003d1f);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid #00ff41;
+        }
+
+        .website-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(0, 255, 65, 0.3), transparent);
+            animation: pulse-thumbnail 3s infinite;
+        }
+
+        .website-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .website-content {
+            padding: 30px;
+        }
+
+        .website-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 3rem;
+            color: rgba(0, 255, 65, 0.1);
+            font-weight: bold;
+        }
+
+        .website-title {
+            font-size: 1.8rem;
+            color: #00ff41;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .website-description {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .website-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #00ff41, #00ff9d);
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .website-link:hover {
+            background: linear-gradient(135deg, #00ff9d, #00ff41);
+            box-shadow: 0 5px 20px rgba(0, 255, 65, 0.5);
+            transform: scale(1.05);
+        }
+
+        .game-card {
+            background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+            border: 2px solid #00ff41;
+            border-radius: 15px;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #001a0d, #003d1f);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid #00ff41;
+        }
+
+        .game-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(0, 255, 65, 0.3), transparent);
+            animation: pulse-thumbnail 3s infinite;
+        }
+
+        .game-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes pulse-thumbnail {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .thumbnail-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: #00ff41;
+            opacity: 0.6;
+            text-shadow: 0 0 20px #00ff41;
+        }
+
+        .game-content {
+            padding: 30px;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+
+        .game-card:hover::before {
+            animation: shine 1.5s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #00ff9d;
+            box-shadow: 0 10px 40px rgba(0, 255, 65, 0.4);
+        }
+
+        .game-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 3rem;
+            color: rgba(0, 255, 65, 0.1);
+            font-weight: bold;
+        }
+
+        .game-title {
+            font-size: 1.8rem;
+            color: #00ff41;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-description {
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .game-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #00ff41, #00ff9d);
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .game-link:hover {
+            background: linear-gradient(135deg, #00ff9d, #00ff41);
+            box-shadow: 0 5px 20px rgba(0, 255, 65, 0.5);
+            transform: scale(1.05);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(0, 255, 65, 0.2);
+            border: 1px solid #00ff41;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #00ff41;
+            margin-top: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+            border-top: 1px solid #00ff41;
+        }
+
+        footer p {
+            color: #666;
+            letter-spacing: 2px;
+        }
+
+        .footer-divider {
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ff41, transparent);
+            margin: 20px auto;
+        }
+
+        .footer-creators {
+            color: #00ff41 !important;
+            font-size: 0.85rem !important;
+            letter-spacing: 3px !important;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .footer-names {
+            color: #fff !important;
+            font-size: 1rem !important;
+            letter-spacing: 2px !important;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+            margin-bottom: 8px;
+        }
+
+        .footer-section {
+            color: #00ff41 !important;
+            font-size: 0.85rem !important;
+            letter-spacing: 3px !important;
+            margin-top: 5px;
+        }
+
+        .footer-links {
+            color: #00ff41 !important;
+            font-size: 0.85rem !important;
+            letter-spacing: 3px !important;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .tech-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff41, transparent);
+            margin: 40px 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .websites-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo { 
+                font-size: 2.5rem; 
+                letter-spacing: 4px;
+            }
+            .welcome-text {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            .subtitle { 
+                font-size: 1rem; 
+                letter-spacing: 2px;
+            }
+            .tagline {
+                font-size: 0.8rem;
+            }
+            .games-grid { 
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .websites-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .section-subtitle {
+                font-size: 0.9rem;
+            }
+            .game-title, .website-title {
+                font-size: 1.5rem;
+            }
+            .game-description, .website-description {
+                font-size: 0.9rem;
+            }
+            .game-number, .website-number {
+                font-size: 2rem;
+            }
+            .games-list .intro {
+                font-size: 1.5rem;
+            }
+            .games-list {
+                font-size: 1.1rem;
+            }
+            .games-list .game-name {
+                margin: 3px 8px;
+                font-size: 0.9rem;
+            }
+            header {
+                padding: 40px 15px;
+                min-height: 250px;
+            }
+            .container {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo { 
+                font-size: 2rem; 
+                letter-spacing: 3px;
+            }
+            .welcome-text {
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+            }
+            .subtitle { 
+                font-size: 0.9rem; 
+                letter-spacing: 1px;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .game-title, .website-title {
+                font-size: 1.3rem;
+            }
+            .game-link, .website-link {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+            }
+            .game-content, .website-content {
+                padding: 20px;
+            }
+            .game-thumbnail, .website-thumbnail {
+                height: 150px;
+            }
+            .thumbnail-icon {
+                font-size: 3rem;
+            }
+            .games-list .intro {
+                font-size: 1.2rem;
+            }
+            .games-list .game-name {
+                font-size: 0.8rem;
+                margin: 2px 5px;
+            }
+        }
+
+        /* Landscape mobile devices */
+        @media (max-width: 900px) and (orientation: landscape) {
+            header {
+                min-height: 200px;
+                padding: 30px 15px;
+            }
+            .logo, .welcome-text {
+                font-size: 2rem;
+            }
+            .games-grid, .websites-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+
+        /* Touch device improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .game-card, .website-card {
+                cursor: pointer;
+                -webkit-tap-highlight-color: rgba(0, 255, 65, 0.2);
+            }
+            .game-link, .website-link {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+            /* Larger touch targets */
+            .game-link, .website-link, .game-card, .website-card {
+                min-height: 44px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .grid-background, .particles {
+                display: none;
+            }
+            .game-card, .website-card {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="grid-background"></div>
+    
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <!-- Welcome Message -->
+                <div class="rotating-text active" id="welcome">
+                    <h1 class="welcome-text">Welcome to the<br>2026 CEIS Exhibit</h1>
+                    <p class="subtitle" style="margin-top: 20px;">College of Engineering & Information Sciences</p>
+                </div>
+
+                <!-- CEIS Logo -->
+                <div class="rotating-text" id="ceis-logo">
+                    <h1 class="logo glitch" data-text="CEIS">CEIS</h1>
+                    <p class="subtitle" style="margin-top: 20px;">Gaming Exhibit 2026</p>
+                    <p class="tagline">College of Engineering & Information Sciences</p>
+                </div>
+
+                <!-- Games List -->
+                <div class="rotating-text" id="games">
+                    <div class="games-list">
+                        <div class="intro">Look at the Different Creations<br>of the IT Students</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="tech-line"></div>
+
+        <div class="games-grid">
+            <!-- Game 1 -->
+            <div class="game-card">
+                <div class="game-thumbnail">
+                    <img src="/images/flappy.png" alt="Flappy Duck">
+                </div>
+
+                <div class="game-content">
+                    <div class="game-number">01</div>
+                    <h2 class="game-title">Flappy Duck</h2>
+                    <p class="game-description">
+                        Navigate through challenging obstacles in this addictive arcade game. 
+                        Test your reflexes and timing as you guide the duck to victory.
+                    </p>
+                    <a href="https://fnar.gamer.gd/?i=2" class="game-link" target="_blank">Launch Game</a>
+                    <span class="status-badge">● Live</span>
+                </div>
+            </div>
+
+            <!-- Game 2 -->
+            <div class="game-card">
+                 <div class="game-thumbnail">
+                    <img src="/images/aster.png" alt="Aster Rush">
+                </div>
+                <div class="game-content">
+                    <div class="game-number">02</div>
+                    <h2 class="game-title">Asterush</h2>
+                    <p class="game-description">
+                        Navigate through space and dodge asteroids in this fast-paced arcade shooter. 
+                        Master your reflexes and survive the cosmic chaos.
+                    </p>
+                    <a href="https://asterush.x10.mx/" class="game-link" target="_blank">Launch Game</a>
+                    <span class="status-badge">● Live</span>
+                </div>
+            </div>
+
+            <!-- Game 3 -->
+            <div class="game-card">
+                <div class="game-thumbnail">
+                    <img src="/images/car.jpg" alt="car">
+                </div>
+                <div class="game-content">
+                    <div class="game-number">03</div>
+                    <h2 class="game-title">Car Dash</h2>
+                    <p class="game-description">
+                        Hit the road and race through traffic in this thrilling driving game. 
+                        Dodge obstacles and push your speed to the limit.
+                    </p>
+                    <a href="http://cardash.x10.mx/" class="game-link" target="_blank">Launch Game</a>
+                    <span class="status-badge">● Live</span>
+                </div>
+            </div>
+
+            <!-- Game 4 -->
+            <div class="game-card">
+                <div class="game-thumbnail">
+                    <div class="thumbnail-icon">🏫</div>
+                </div>
+                <div class="game-content">
+                    <div class="game-number">04</div>
+                    <h2 class="game-title">My School Life</h2>
+                    <p class="game-description">
+                        Experience an interactive text-based adventure through school life. 
+                        Make choices that shape your story and determine your future.
+                    </p>
+                    <a href="http://myschoollifetextbasedgame.free.nf" class="game-link" target="_blank">Launch Game</a>
+                    <span class="status-badge">● Live</span>
+                </div>
+            </div>
+
+            <!-- Game 5 -->
+            <div class="game-card">
+                <div class="game-thumbnail">
+                    <img src="/images/kicks.png" alt="Flappy Duck">
+                </div>
+                <div class="game-content">
+                    <div class="game-number">05</div>
+                    <h2 class="game-title">Collect Kicks</h2>
+                    <p class="game-description">
+                        Build your ultimate sneaker collection in this exciting collector's game. 
+                        Hunt for rare kicks and showcase your style.
+                    </p>
+                    <a href="https://hernanihezran-boop.github.io/kicks-collectors/index.html" class="game-link" target="_blank">Launch Game</a>
+                    <span class="status-badge">● Live</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-line"></div>
+
+        <section class="websites-section">
+            <h2 class="section-title">Checkout More IT Creations</h2>
+            <p class="section-subtitle">Explore innovative web projects created by our IT students</p>
+            
+            <div class="websites-grid">
+                <!-- Website 1 -->
+                <div class="website-card">
+                    <div class="website-thumbnail">
+                        <img src="/images/tuamrkt.png" alt="Tua Marketplace">
+                    </div>
+                    <div class="website-content">
+                        <div class="website-number">01</div>
+                        <h3 class="website-title">TUA Marketplace</h3>
+                        <p class="website-description">
+                            A complete online marketplace platform for buying and selling. 
+                            Connect with buyers and sellers in one seamless experience.
+                        </p>
+                        <a href="https://tuamarketplace.online/" class="website-link" target="_blank">Visit Website</a>
+                        <span class="status-badge">● Live</span>
+                    </div>
+                </div>
+
+                <!-- Website 2 -->
+                <div class="website-card">
+                    <div class="website-thumbnail">
+                        <img src="/images/libhub.png" alt="LibraryHub">
+                    </div>
+                    <div class="website-content">
+                        <div class="website-number">02</div>
+                        <h3 class="website-title">Library Hub</h3>
+                        <p class="website-description">
+                            Your digital library management system for organizing and accessing books. 
+                            Browse, search, and manage your reading collection all in one place.
+                        </p>
+                        <a href="https://humphreydc.github.io/LibraryHub/" class="website-link" target="_blank">Visit Website</a>
+                        <span class="status-badge">● Live</span>
+                    </div>
+                </div>
+
+                <!-- Website 3 -->
+                <div class="website-card">
+                    <div class="website-thumbnail">
+                        <img src="/images/worktua.png" alt="worktua">
+                    </div>
+                    <div class="website-content">
+                        <div class="website-number">03</div>
+                        <h3 class="website-title">Work TUA</h3>
+                        <p class="website-description">
+                            Professional job portal connecting employers and job seekers. 
+                            Find opportunities and build your career with our platform.
+                        </p>
+                        <a href="https://worktua.xo.je/?i=2" class="website-link" target="_blank">Visit Website</a>
+                        <span class="status-badge">● Live</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="tech-line"></div>
+
+        <footer>
+            <p>&copy; 2026 CEIS Gaming Exhibit | Powered by Innovation</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">College of Engineering & Information Sciences</p>
+            <div class="footer-divider"></div>
+            <p class="footer-creators">Created by</p>
+            <p class="footer-names">Prince &nbsp;|&nbsp; John Dave E. Ruiz &nbsp;|&nbsp; Raziel A. Conde</p>
+            <p class="footer-section">Section: 2ITSE01</p>
+            <div class="footer-divider"></div>
+            <p class="footer-links">Links by 2ITSE01</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.width = Math.random() * 4 + 1 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Rotating header text
+        let currentScreen = 0;
+        const screens = ['welcome', 'ceis-logo', 'games'];
+        const displayTimes = [5000, 5000, 8000]; // Time in milliseconds for each screen
+
+        function rotateHeader() {
+            // Remove active class from current screen
+            document.getElementById(screens[currentScreen]).classList.remove('active');
+            
+            // Move to next screen
+            currentScreen = (currentScreen + 1) % screens.length;
+            
+            // Add active class to new screen
+            document.getElementById(screens[currentScreen]).classList.add('active');
+            
+            // Schedule next rotation based on current screen's display time
+            setTimeout(rotateHeader, displayTimes[currentScreen]);
+        }
+
+        // Start rotation after initial display time
+        setTimeout(rotateHeader, displayTimes[0]);
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    document.querySelector(href)?.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Card hover effect - works on both mouse and touch
+        document.querySelectorAll('.game-card, .website-card').forEach(card => {
+            // Mouse events
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(145deg, #0f0f0f, #1f1f1f)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'linear-gradient(145deg, #0a0a0a, #1a1a1a)';
+            });
+
+            // Touch events for mobile
+            card.addEventListener('touchstart', function() {
+                this.style.background = 'linear-gradient(145deg, #0f0f0f, #1f1f1f)';
+                this.style.transform = 'translateY(-5px) scale(1.01)';
+            });
+            card.addEventListener('touchend', function() {
+                this.style.background = 'linear-gradient(145deg, #0a0a0a, #1a1a1a)';
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Prevent zoom on double-tap for iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Performance optimization: reduce particles on mobile
+        if (window.innerWidth <= 768) {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                if (index > 15) particle.remove(); // Keep only 15 particles on mobile
+            });
+        }
+    </script>
+</body>
+</html>
