@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pill-ow Demo - See It In Action</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'medical-blue': '#0891b2',
+                        'medical-teal': '#0d9488',
+                        'ai-purple': '#7c3aed',
+                        'dark-bg': '#0f172a',
+                        'card-bg': '#1e293b',
+                    },
+                    animation: {
+                        'fadeIn': 'fadeIn 0.8s ease-in-out',
+                        'slideUp': 'slideUp 0.6s ease-out',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #0891b2, 0 0 20px #0891b2, 0 0 30px #0891b2; }
+            to { box-shadow: 0 0 20px #7c3aed, 0 0 30px #7c3aed, 0 0 40px #7c3aed; }
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #0891b2, #7c3aed, #0d9488);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .medical-gradient {
+            background: linear-gradient(135deg, rgba(8, 145, 178, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+        .demo-card {
+            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+        }
+        .feature-highlight {
+            background: linear-gradient(45deg, rgba(8, 145, 178, 0.1), rgba(124, 58, 237, 0.1));
+            border: 1px solid rgba(8, 145, 178, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-white font-sans antialiased">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-dark-bg/90 backdrop-blur-md border-b border-slate-700 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="text-2xl font-bold gradient-text">Pill-ow</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="hover:text-medical-blue transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back to Home
+                    </a>
+                    <a href="download.html" class="bg-gradient-to-r from-medical-blue to-ai-purple px-4 py-2 rounded-full text-sm font-semibold hover:shadow-lg transition-all">
+                        Download App
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <a href="index.html" class="text-medical-blue">
+                        <i class="fas fa-arrow-left text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-dark-bg via-slate-900 to-dark-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 animate-fadeIn">
+                <h1 class="text-4xl lg:text-6xl font-bold leading-tight mb-6">
+                    See <span class="gradient-text">Pill-ow</span> in Action
+                </h1>
+                <p class="text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
+                    Watch how our AI-powered medication identification system works with real pills and packages. 
+                    Experience the future of safe medication management.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Videos Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Pill Recognition Demo -->
+                <div class="demo-card p-8 rounded-2xl border border-slate-600 animate-slideUp">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-medical-blue to-ai-purple rounded-xl flex items-center justify-center">
+                            <i class="fas fa-pills text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Pill Recognition</h2>
+                            <p class="text-slate-400">AI-powered visual identification</p>
+                        </div>
+                    </div>
+                    
+                    <div class="video-container mb-6">
+                        <iframe 
+                            src="https://www.youtube.com/embed/zvvnjtslXaw" 
+                            frameborder="0" 
+                            allowfullscreen
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                        </iframe>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold text-medical-blue">Key Features Demonstrated:</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-medical-blue rounded-full"></div>
+                                <span class="text-slate-300">Real-time pill capture and analysis</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-ai-purple rounded-full"></div>
+                                <span class="text-slate-300">Instant medication information display</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-medical-teal rounded-full"></div>
+                                <span class="text-slate-300">91% accuracy with ConvNextv2 model</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-medical-blue rounded-full"></div>
+                                <span class="text-slate-300">Safety warnings and side effects</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Package Recognition Demo -->
+                <div class="demo-card p-8 rounded-2xl border border-slate-600 animate-slideUp" style="animation-delay: 0.2s;">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-ai-purple to-medical-teal rounded-xl flex items-center justify-center">
+                            <i class="fas fa-box text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Package Recognition</h2>
+                            <p class="text-slate-400">OCR-based text extraction</p>
+                        </div>
+                    </div>
+                    
+                    <div class="video-container mb-6">
+                        <iframe 
+                            src="https://www.youtube.com/embed/UvJ3qbd4YPI" 
+                            frameborder="0" 
+                            allowfullscreen
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                        </iframe>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold text-ai-purple">Key Features Demonstrated:</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-ai-purple rounded-full"></div>
+                                <span class="text-slate-300">Medicine box and blister pack scanning</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-medical-teal rounded-full"></div>
+                                <span class="text-slate-300">Text extraction and medication matching</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-medical-blue rounded-full"></div>
+                                <span class="text-slate-300">Philippine market drug database</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-ai-purple rounded-full"></div>
+                                <span class="text-slate-300">Dosage and usage instructions</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-20 bg-slate-900/50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">How <span class="gradient-text">It Works</span></h2>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                    Our AI-powered system combines advanced computer vision with comprehensive pharmaceutical data
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center space-y-4">
+                    <div class="w-20 h-20 bg-gradient-to-r from-medical-blue to-ai-purple rounded-full flex items-center justify-center mx-auto mb-6 animate-glow">
+                        <i class="fas fa-camera text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">1. Capture</h3>
+                    <p class="text-slate-300">Take a photo of your pill or medication package using your smartphone camera</p>
+                </div>
+                
+                <div class="text-center space-y-4">
+                    <div class="w-20 h-20 bg-gradient-to-r from-ai-purple to-medical-teal rounded-full flex items-center justify-center mx-auto mb-6" style="animation: glow 2s ease-in-out infinite alternate; animation-delay: 0.5s;">
+                        <i class="fas fa-brain text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">2. Analyze</h3>
+                    <p class="text-slate-300">Our ConvNextv2 AI model processes the image using advanced deep learning algorithms</p>
+                </div>
+                
+                <div class="text-center space-y-4">
+                    <div class="w-20 h-20 bg-gradient-to-r from-medical-teal to-medical-blue rounded-full flex items-center justify-center mx-auto mb-6" style="animation: glow 2s ease-in-out infinite alternate; animation-delay: 1s;">
+                        <i class="fas fa-info-circle text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">3. Identify</h3>
+                    <p class="text-slate-300">Get instant medication information, dosage, warnings, and price comparisons</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Stats -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="medical-gradient rounded-3xl p-12 border border-slate-600">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Proven <span class="gradient-text">Performance</span></h2>
+                    <p class="text-xl text-slate-300">Real-world testing results from our Filipino market dataset</p>
+                </div>
+                
+                <div class="grid md:grid-cols-4 gap-8 text-center">
+                    <div class="space-y-2">
+                        <div class="text-4xl font-bold gradient-text">91%</div>
+                        <div class="text-slate-300">Top-1 Accuracy</div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-4xl font-bold gradient-text">98%</div>
+                        <div class="text-slate-300">Top-3 Accuracy</div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-4xl font-bold gradient-text">500+</div>
+                        <div class="text-slate-300">Medications Supported</div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-4xl font-bold gradient-text">0.8s</div>
+                        <div class="text-slate-300">Average Response Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-slate-900/50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-6">Ready to Try <span class="gradient-text">Pill-ow</span>?</h2>
+            <p class="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
+                Download our app today and experience safer medication management for you and your family
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="download.html" class="bg-gradient-to-r from-medical-blue to-ai-purple px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl hover:shadow-medical-blue/25 transition-all duration-300 animate-glow">
+                    <i class="fas fa-download mr-2"></i>
+                    Download Now
+                </a>
+                <a href="index.html" class="border border-slate-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-card-bg transition-all duration-300">
+                    <i class="fas fa-home mr-2"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-12 border-t border-slate-700">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-3 mb-4">
+                    <span class="text-2xl font-bold gradient-text">Pill-ow</span>
+                </div>
+                <p class="text-slate-300 mb-4">
+                    Empowering safer medication management through AI-powered visual recognition for Filipino families.
+                </p>
+                <p class="text-slate-300">
+                    Developers: Timothy Chua, Reginald Lao, Alison Tuahan, Jandrik Lana
+                </p>
+            </div>
+            
+            <div class="border-t border-slate-700 pt-8 mt-8 text-center text-slate-400">
+                <p>&copy; 2025 Pill-ow. Developed for 4th year Capstone Project</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('bg-dark-bg/95');
+            } else {
+                header.classList.remove('bg-dark-bg/95');
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-slideUp');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all demo cards
+        document.querySelectorAll('.demo-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

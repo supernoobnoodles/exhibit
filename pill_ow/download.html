@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Pill-ow - Smart Medication Identification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'medical-blue': '#0891b2',
+                        'medical-teal': '#0d9488',
+                        'ai-purple': '#7c3aed',
+                        'dark-bg': '#0f172a',
+                        'card-bg': '#1e293b',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s linear infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #0891b2, 0 0 20px #0891b2, 0 0 30px #0891b2; }
+            to { box-shadow: 0 0 20px #7c3aed, 0 0 30px #7c3aed, 0 0 40px #7c3aed; }
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #0891b2, #7c3aed, #0d9488);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .medical-gradient {
+            background: linear-gradient(135deg, rgba(8, 145, 178, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+        }
+        .neural-bg {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(8, 145, 178, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+        }
+        .step-number {
+            background: linear-gradient(135deg, #0891b2, #7c3aed);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .pill-item {
+            transition: all 0.3s ease;
+        }
+        .pill-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(8, 145, 178, 0.15);
+        }
+        .fda-badge {
+            background: linear-gradient(135deg, #059669, #0891b2);
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 10px rgba(5, 150, 105, 0.5); }
+            to { box-shadow: 0 0 20px rgba(5, 150, 105, 0.8), 0 0 30px rgba(8, 145, 178, 0.4); }
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-white font-sans antialiased">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-dark-bg/90 backdrop-blur-md border-b border-slate-700 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="text-2xl font-bold gradient-text">Pill-ow</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="hover:text-medical-blue transition-colors">Home</a>
+                    <a href="index.html#features" class="hover:text-medical-blue transition-colors">Features</a>
+                    <a href="index.html#technology" class="hover:text-medical-blue transition-colors">Technology</a>
+                    <a href="#package-recognition" class="hover:text-medical-blue transition-colors">Package Recognition</a>
+                    <a href="#supported-pills" class="hover:text-medical-blue transition-colors">Supported Pills</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Download Hero Section -->
+    <section class="pt-24 pb-16 neural-bg relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center space-x-2 bg-card-bg px-4 py-2 rounded-full border border-slate-600 mb-6">
+                    <i class="fas fa-download text-ai-purple"></i>
+                    <span class="text-sm">Ready to Download</span>
+                </div>
+                <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                    Download <span class="gradient-text">Pill-ow</span>
+                </h1>
+                <p class="text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
+                    Get started with AI-powered medication identification. Follow the setup instructions below to install and configure Pill-ow on your device.
+                </p>
+            </div>
+
+            <!-- Download Cards Container -->
+            <div class="max-w-6xl mx-auto mb-16">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Download Card -->
+                    <div class="bg-card-bg p-8 rounded-2xl border border-slate-600 hover:border-medical-blue/50 transition-all duration-300">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-r from-medical-blue to-ai-purple rounded-xl flex items-center justify-center">
+                                <i class="fab fa-android text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Download App</h3>
+                                <p class="text-slate-400">Download link</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between text-sm">
+                                <span>Version:</span>
+                                <span class="text-medical-blue">1.0.0</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span>Size:</span>
+                                <span class="text-medical-blue">~50 MB</span>
+                            </div>
+                        </div>
+                        <a href="https://drive.google.com/drive/folders/18lnlB3lGXGDU9zRaLChTUwjuU8LLYV_Q?usp=sharing" 
+                           class="block w-full bg-gradient-to-r from-medical-blue to-ai-purple px-6 py-3 rounded-full text-center font-semibold hover:shadow-xl hover:shadow-medical-blue/25 transition-all duration-300 mt-6 animate-glow">
+                            <i class="fas fa-download mr-2"></i>
+                            Download Pill-ow
+                        </a>
+                    </div>
+
+                    <!-- Things to Know Card -->
+                    <div class="bg-card-bg p-8 rounded-2xl border border-slate-600 hover:border-medical-teal/50 transition-all duration-300">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-r from-medical-teal to-ai-purple rounded-xl flex items-center justify-center">
+                                <i class="fas fa-lightbulb text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Things to Know</h3>
+                                <p class="text-slate-400">Before trying the app</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-medical-teal text-sm mt-1"></i>
+                                <p class="text-sm text-slate-300">This is a student project, there are a limited number of pills it can recognize (but for packages, it can recognize almost all.)</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-medical-teal text-sm mt-1"></i>
+                                <p class="text-sm text-slate-300">The list of pills it can identify are shown below.</p>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-medical-teal text-sm mt-1"></i>
+                                <p class="text-sm text-slate-300">The first identification might take a while, but for subsequent identifications, it will be a couple of seconds. This is because the server has a cold start.</p>
+                            </div>
+<div class="flex items-start space-x-3">
+                                <i class="fas fa-check-circle text-medical-teal text-sm mt-1"></i>
+                                <p class="text-sm text-slate-300">When taking a picture, focus the medication inside the square guide. Make sure there is good lighting and pill features are clearly seen.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Pills Section -->
+    <section id="supported-pills" class="py-20 bg-gradient-to-br from-slate-900 to-dark-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                    <span class="gradient-text">Supported Pills</span>
+                </h2>
+                <p class="text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
+                    These are the specific medications that Pill-ow can currently identify as individual pills. Our AI model has been trained to recognize these specific pills and their characteristics.
+                </p>
+            </div>
+
+            <!-- Pills Grid -->
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Pill Items -->
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-capsules text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Aciclovir</h3>
+                                <p class="text-sm text-slate-400">Herpex</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-tablets text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Ascorbic Acid</h3>
+                                <p class="text-sm text-slate-400">BewellC</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-pills text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Azithromycin</h3>
+                                <p class="text-sm text-slate-400">Zithromax</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-teal to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-capsules text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Carbocisteine</h3>
+                                <p class="text-sm text-slate-400">Marluxyn</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-teal to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-capsules text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Carbocisteine</h3>
+                                <p class="text-sm text-slate-400">Solmux</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-ai-purple to-medical-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-tablets text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">DoloNeurobion</h3>
+                                <p class="text-sm text-slate-400">3B</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-medical-teal rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-pills text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Iron Complex</h3>
+                                <p class="text-sm text-slate-400">Hemarate</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-ai-purple to-medical-teal rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-capsules text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">KremilS</h3>
+                                <p class="text-sm text-slate-400">Antacid</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-tablets text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Loperamide HCl</h3>
+                                <p class="text-sm text-slate-400">Diatabs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-teal to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-pills text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Loratadine</h3>
+                                <p class="text-sm text-slate-400">Allerta</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-teal to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-pills text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Loratadine</h3>
+                                <p class="text-sm text-slate-400">Claritin</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-ai-purple to-medical-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-tablets text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Losartan Potassium</h3>
+                                <p class="text-sm text-slate-400">Medzart</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-medical-teal rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-capsules text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Meclizine HCl</h3>
+                                <p class="text-sm text-slate-400">Bonamine</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-teal to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-pills text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Mefenamic Acid</h3>
+                                <p class="text-sm text-slate-400">Myrefen</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-ai-purple to-medical-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-tablets text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Montelukast + Levocetirizine</h3>
+                                <p class="text-sm text-slate-400">Allerkast</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-capsules text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Multivitamins</h3>
+                                <p class="text-sm text-slate-400">Centrum Advance</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-teal to-medical-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-pills text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">MX3</h3>
+                                <p class="text-sm text-slate-400">Supplement</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-ai-purple to-medical-teal rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-tablets text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Naproxen Sodium</h3>
+                                <p class="text-sm text-slate-400">Skelan 550</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-pills text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Paracetamol</h3>
+                                <p class="text-sm text-slate-400">Biogesic</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-pills text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Paracetamol</h3>
+                                <p class="text-sm text-slate-400">Tempaid</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-pills text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Paracetamol</h3>
+                                <p class="text-sm text-slate-400">Tempra</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-teal to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-capsules text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Cold Medicine</h3>
+                                <p class="text-sm text-slate-400">Bioflu</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-ai-purple to-medical-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-tablets text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Rosuvastatin</h3>
+                                <p class="text-sm text-slate-400">Rosusaph10</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-medical-teal rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-pills text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Sambong Leaf</h3>
+                                <p class="text-sm text-slate-400">Uricare 500mg</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-teal to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-capsules text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Sinecod Forte</h3>
+                                <p class="text-sm text-slate-400">Cough Medicine</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-ai-purple to-medical-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-tablets text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Sodium Ascorbate Zinc</h3>
+                                <p class="text-sm text-slate-400">ImmunPro</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-blue to-ai-purple rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-pills text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Vitex Negundo L</h3>
+                                <p class="text-sm text-slate-400">Ascof Forte</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pill-item bg-card-bg p-6 rounded-xl border border-slate-600 hover:border-medical-blue/50">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-medical-teal to-medical-blue rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-capsules text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-white">Fish Oil</h3>
+                                <p class="text-sm text-slate-400">Wild Alaskan 1400mg</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Package Recognition Section -->
+    <section id="package-recognition" class="py-20 bg-gradient-to-br from-dark-bg to-slate-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                    <span class="gradient-text">Package Recognition</span>
+                </h2>
+                <p class="text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto">
+                    While our pill recognition is limited to specific medications, Pill-ow excels at identifying medication packages with comprehensive coverage.
+                </p>
+            </div>
+
+            <div class="max-w-5xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <!-- Content Side -->
+                    <div class="space-y-8">
+                        <div class="bg-card-bg p-8 rounded-2xl border border-slate-600">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-r from-green-600 to-medical-blue rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-box text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">Comprehensive Package Database</h3>
+                                    <p class="text-slate-400">FDA-approved medications</p>
+                                </div>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed mb-6">
+                                Our AI model has been extensively trained on medication packaging and can identify virtually all pharmaceutical products listed in the Philippine FDA database.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                    <span class="text-slate-300">Prescription medications</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                    <span class="text-slate-300">Over-the-counter drugs</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                    <span class="text-slate-300">Vitamins and supplements</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                    <span class="text-slate-300">Generic and branded medications</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-green-600/10 to-medical-blue/10 p-6 rounded-xl border border-green-500/20">
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-info-circle text-green-400 text-lg mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-green-400 mb-2">Why Package Recognition Works Better</h4>
+                                    <p class="text-sm text-slate-300">
+                                        Medication packages have standardized designs, clear text, and consistent branding that make them ideal for AI recognition. Unlike individual pills which can vary in lighting and positioning, packages provide multiple visual cues for accurate identification.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Side -->
+                    <div class="space-y-6">
+                        <div class="bg-card-bg p-6 rounded-2xl border border-slate-600">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-chart-pie text-4xl text-medical-blue mb-4"></i>
+                                <h3 class="text-xl font-bold">Recognition Set</h3>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-sm text-slate-300">Package Recognition</span>
+                                        <span class="text-sm font-semibold text-green-400">~95%</span>
+                                    </div>
+                                    <div class="w-full bg-slate-700 rounded-full h-3">
+                                        <div class="bg-gradient-to-r from-green-500 to-green-400 h-3 rounded-full" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-sm text-slate-300">Individual Pills</span>
+                                        <span class="text-sm font-semibold text-medical-blue">Limited Dataset</span>
+                                    </div>
+                                    <div class="w-full bg-slate-700 rounded-full h-3">
+                                        <div class="bg-gradient-to-r from-medical-blue to-ai-purple h-3 rounded-full" style="width: 30%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-card-bg p-6 rounded-2xl border border-slate-600">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold gradient-text mb-2">1000+</div>
+                                <p class="text-slate-400 text-sm">FDA-approved packages recognized</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-card-bg p-6 rounded-2xl border border-slate-600">
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-shield-alt text-2xl text-green-500"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white">FDA Compliance</h4>
+                                    <p class="text-sm text-slate-400">All recognized packages are from official FDA database</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smooth scrolling script -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('bg-dark-bg/95');
+            } else {
+                header.classList.remove('bg-dark-bg/95');
+            }
+        });
+
+        // Copy to clipboard functionality for troubleshooting
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // You could add a toast notification here
+                console.log('Copied to clipboard');
+            });
+        }
+    </script>
+</body>
+</html>
